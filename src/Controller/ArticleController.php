@@ -18,4 +18,12 @@ class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+    #[Route('/article/{id}', name: 'article_detail')]
+    public function articleDetail($id, ArticleRepository $repo)
+    {
+        $article = $repo->find($id);
+
+        return $this->render('article/detail.html.twig', ['article' => $article]);
+    }
 }

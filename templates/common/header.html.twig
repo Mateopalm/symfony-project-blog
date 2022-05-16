@@ -1,0 +1,20 @@
+
+
+<a href="">Accueil</a>
+
+<a href="">Recettes</a>
+
+<a href="">A propos</a>
+
+<a href="">Contact</a>
+
+{% if app.user %}
+    <a href="{{path('home')}}">Déconnexion</a>
+{% else %}
+    <a href="{{path('home')}}">Connexion</a>
+{% endif %}
+
+{# Is_Granted : a verifier #}
+{% if true %}
+    <a href="{{path('home')}}">Administration</a>
+{% endif %}
