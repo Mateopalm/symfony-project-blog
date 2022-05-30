@@ -1,3 +1,27 @@
+:root {
+    --header-color: #FFFFFF;
+    --header-color: #DDDDDD;
+    --header-color: #B2996B;
+    --header-color: #8B8585;
+    --header-color: #D3E0D3;
+    --header-color: #AEB8AE;
+    --header-color: #2F2E2E;
+    --header-color: #E1E9E1;
+    --header-color: #84947B;
+    --header-color: #F8F9F7;
+}
+
+/* Les différentes polices utilisées :
+    - Roboto-Light
+    - Futura-Light
+    - Didot-Light-Italic
+    - Metropolis-Light
+*/
+
 body {
     background-color: lightgray;
+}
+
+.recettes img {
+    size: 25%;
 }

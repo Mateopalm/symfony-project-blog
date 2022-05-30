@@ -1,18 +1,31 @@
-<a href="">Accueil</a>
+<a href="{{path('home')}}">Accueil</a>
 
-<a href="">Recettes</a>
+<a href="{{path('recettes')}}">Recettes</a>
 
-<a href="">A propos</a>
+<a href="{{path('app_about')}}">A propos</a>
 
-<a href="">Contact</a>
+<a href="{{path('app_contact')}}">Contact</a>
 
 {% if app.user %}
-    <a href="{{path('home')}}">Déconnexion</a>
-{% else %}
-    <a href="{{path('home')}}">Connexion</a>
+    <a href="{{path('create_recette')}}">Créer une recette</a>
 {% endif %}
 
-{# Is_Granted : a verifier #}
-{% if true %}
-    <a href="{{path('home')}}">Administration</a>
+{% if is_granted("ROLE_ADMIN") %}
+    <a href="{{path('admin')}}">Administration</a>
 {% endif %}
+
+{% if app.user %}
+    <a href="{{path('mes_recettes')}}">Mes recettes</a>
+    <a href="{{path('app_logout')}}">Déconnexion</a>
+{% else %}
+    <a href="{{path('app_register')}}">S'inscrire</a>
+    <a href="{{path('app_login')}}">Connexion</a>
+{% endif %}
+
+<style>
+    #title { margin-left: 40% }
+</style>
+
+<h2 id="title">AVENTURES GUSTATIVES</h2>
+
+<img src="images/ag_title" />
