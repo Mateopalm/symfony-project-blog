@@ -39,6 +39,17 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
+    // // Récupération des commentaire d'un article
+    // public function findCommentary($value)
+    // {
+    //     return $this->createQueryBuilder('a')
+    //         ->andWhere('a.commentaire > :val') // Article.commentaire = id de l'article
+    //         ->setParameter("val", $value)
+    //         ->getQuery()
+    //         ->getOneOrNullResult()
+    //         ;
+    // }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

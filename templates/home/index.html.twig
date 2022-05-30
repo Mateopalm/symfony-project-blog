@@ -6,9 +6,27 @@
 	<h1>La liste des articles dispos</h1>
 	<ul>
 		{% for article in articles %}
-			<li>
+			<li id="article">
+				<img src="{{asset(article.image)}}" />
+				<p>{{article.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
+				<p>{{article.category.name}}</p>
 				<a href="{{path('article_detail', {id: article.id})}}">{{article.title}}</a>
+				<p>{{article.description}}</p>
 			</li>
 		{% endfor %}
 	</ul>
+<style>
+#article {
+	border: 1px solid;
+	border-radius : 15px;
+	height: auto;
+	width: auto;
+	display: flex;
+	flex-direction : column;
+	margin-left : 25%;
+	margin-right : 25%;
+
+
+}
+</style>
 {% endblock %}

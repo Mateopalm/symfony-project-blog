@@ -1,31 +1,78 @@
-<a href="{{path('home')}}">Accueil</a>
+<div id="header">
+    <div id="menu">
+        <div id="Acceuil">
+            <a href="{{path('home')}}">Accueil</a>
+        </div>
+        <div id="Recettes">
+            <a href="{{path('recettes')}}">Recettes</a>
+        </div>
+        
+        <div id="apropos">
+            <a href="{{path('app_about')}}">A propos</a>
+        </div>
+        
+        <div id="Contact">
+            <a href="{{path('app_contact')}}">Contact</a>
+        </div>
+        
 
-<a href="{{path('recettes')}}">Recettes</a>
+        {% if app.user %}
+        <div id="createrecette">
+            <a href="{{path('create_recette')}}">Créer une recette</a>
+        </div>
+        {% endif %}
 
-<a href="{{path('app_about')}}">A propos</a>
+        {% if is_granted("ROLE_ADMIN") %}
+        <div id="Administration">
+            <a href="{{path('admin')}}">Administration</a>
+        </div>
+        {% endif %}
 
-<a href="{{path('app_contact')}}">Contact</a>
-
-{% if app.user %}
-    <a href="{{path('create_recette')}}">Créer une recette</a>
-{% endif %}
-
-{% if is_granted("ROLE_ADMIN") %}
-    <a href="{{path('admin')}}">Administration</a>
-{% endif %}
-
-{% if app.user %}
-    <a href="{{path('mes_recettes')}}">Mes recettes</a>
-    <a href="{{path('app_logout')}}">Déconnexion</a>
-{% else %}
-    <a href="{{path('app_register')}}">S'inscrire</a>
-    <a href="{{path('app_login')}}">Connexion</a>
-{% endif %}
+        {% if app.user %}
+        <div id="recettes">
+            <a href="{{path('ma_page')}}">Mes recettes</a>
+        </div>
+        <div id="Déconnexion">
+            <a href="{{path('app_logout')}}">Déconnexion</a>
+        </div>
+        {% else %}
+        <div id="Inscrit">
+            <a href="{{path('app_register')}}">S'inscrire</a>
+        </div>
+        <div id="Connexion">
+            <a href="{{path('app_login')}}">Connexion</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
 
 <style>
-    #title { margin-left: 40% }
+    *{margin: 0;
+    padding : 0}
+    #header { 
+    background:#E1E9E1;
+    text-align: center;
+    height: 15%
+     }
+    #title { text-align: center;
+    margin-top : 5%;
+    color: #84947B; }
+    #imghead {   display: block;
+                 margin-left: auto;
+                 margin-right: auto;
+                 width: 15%;}
+    #header a { display: contents;
+    color : #84947B; }
+    #Acceuil, #Recettes, #apropos, #Contact, #createrecette, #Administration, #recettes, #Déconnexion, #Inscrit, #Connexion{ 
+        color : #84947B;
+        margin-left: 0.5em;
+        margin-bottom: auto;
+        margin-top : 0.5em;
+        font-size: 25px;
+        display:-webkit-inline-box
+         }
 </style>
 
 <h2 id="title">AVENTURES GUSTATIVES</h2>
 
-<img src="images/ag_title" />
+<img id="imghead" src="{{asset('images/logo.png')}}" />

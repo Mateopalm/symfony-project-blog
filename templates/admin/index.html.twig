@@ -35,6 +35,8 @@
         }   
     </style>
 
+    <a href="{{path('admin_contact')}}">Contact</a>
+
     <table>
     {% for article in articles %}
         <tbody>
@@ -42,7 +44,7 @@
                     <td>{{article.id}}</td>
                     <td>{{article.title}}</td>
                     <td>{{article.category.name}}</td>
-                    <td><a class="modifier" href="{{path('admin_delete', {id: article.id})}}">Modifier</a><a class="supprimer" href="{{path('admin_delete', {id: article.id})}}">Supprimer</a></td>
+                    <td><a class="modifier" href="{{path('admin_modif', {id: article.id})}}">Modifier</a><a class="supprimer" href="{{path('admin_delete', {id: article.id})}}">Supprimer</a></td>
             </tr>
         </tbody>
         {% endfor %}

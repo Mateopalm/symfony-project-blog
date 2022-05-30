@@ -3,13 +3,42 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+<div id="contact">
 	<h1>Contact</h1>
+    <div id="formulaire">
+        {{ form_start(contactForm) }}
+            {{ form_row(contactForm.email) }}
+            {{ form_row(contactForm.message) }}
 
-    {{ form_start(contactForm) }}
-        {{ form_row(contactForm.email) }}
-        {{ form_row(contactForm.message) }}
+            <button type="submit" class="btn">Envoyer</button>
+        {{ form_end(contactForm) }}
+    </div>
+</div>
+<style>
+    #contact {border : 0px solid #84947B;
+              border-radius : 15px;
+              align-items: center;
+              display: flex;
+              flex-direction : column;
+              margin-left : 25%;
+              margin-right : 25%;
+              margin-top: 5%;
+              width: auto;
+              color : #84947B;
+              padding: 0.5em;
 
-        <button type="submit" class="btn">Envoyer</button>
-    {{ form_end(contactForm) }}
+              }
+    #contact .btn {
+        width : 90%;
+        margin-left: 1em;
+        background : #84947B;
+        color : white;
+        border : 0px solid
+    }
+ 
+label.required {padding : 1em}
 
+
+
+</style>
 {% endblock %}

@@ -8,4 +8,23 @@
 	<p>{{article.description}}</p>
 	<img src="{{asset(article.image)}}" />
 
+
+
+	{% for commentaire in article.commentaire %}
+		<li>
+			<p>{{commentaire.message}}</p>
+			<p>{{commentaire.user.username}}</p>
+			<p>{{commentaire.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
+		</li>
+	{% endfor %}
+
+
+    {% if app.user %}
+		{{ form_start(commentaireForm) }}
+			{{ form_row(commentaireForm.message) }}
+
+			<button type="submit" class="btn">Créer commentaire</button>
+		{{ form_end(commentaireForm) }}
+    {% endif %}
+
 {% endblock %}

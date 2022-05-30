@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Admin !{% endblock %}
+
+{% block body %}
+
+<table>
+    {% for contact in contact %}
+        <tbody>
+            <tr>
+                <td>{{contact.email}}</td>
+                <td>{{contact.message}}</td>
+                <td><a href="{{path('admin_contact_delete', {id: contact.id})}}">Supprimer</a></td>
+            </tr>
+        </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

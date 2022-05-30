@@ -17,11 +17,15 @@ class Commentaire
     private $message;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'commentaire')]
+    #[ORM\JoinColumn(onDelete:"CASCADE")] // Test delete en cascade
     private $article;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commentaire')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
+
+    #[ORM\Column(type: 'datetime')]
+    private $creation_date;
 
     public function getId(): ?int
     {
@@ -60,6 +64,18 @@ class Commentaire
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCreationDate(): ?\DateTimeInterface
+    {
+        return $this->creation_date;
+    }
+
+    public function setCreationDate(\DateTimeInterface $creation_date): self
+    {
+        $this->creation_date = $creation_date;
 
         return $this;
     }
