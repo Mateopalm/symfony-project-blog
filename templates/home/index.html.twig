@@ -3,30 +3,50 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-	<h1>La liste des articles dispos</h1>
+	<h1 id="articletitre">La liste des articles dispos</h1>
 	<ul>
 		{% for article in articles %}
 			<li id="article">
 				<img src="{{asset(article.image)}}" />
-				<p>{{article.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
-				<p>{{article.category.name}}</p>
-				<a href="{{path('article_detail', {id: article.id})}}">{{article.title}}</a>
-				<p>{{article.description}}</p>
+				<p id="date">{{article.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
+				<p id="type">{{article.category.name}}</p>
+				<a id="titre" href="{{path('article_detail', {id: article.id})}}">{{article.title}}</a>
+				<p id="descrip">{{article.description}}</p>
 			</li>
 		{% endfor %}
 	</ul>
 <style>
+#articletitre{text-align: center;
+margin-top : 10%;
+margin-bottom : 10%}
 #article {
-	border: 1px solid;
-	border-radius : 15px;
-	height: auto;
-	width: auto;
+	border : 1px solid #84947B;
+	height: 5%;
+	width: 50%;
 	display: flex;
 	flex-direction : column;
 	margin-left : 25%;
 	margin-right : 25%;
-
-
+	margin-bottom : 5%;
 }
+#article img {
+	width: 100%;
+	height: 45em;
+	display:flex;
+}
+#description {
+	width : auto;
+	height : auto;
+}
+#article #titre {
+	display : contents;
+	font-size: 170%;
+	color:black;
+}
+#article #date, #article #type {
+	color : #84947B;
+}
+#article #descrip { font-size :100%;}
+
 </style>
 {% endblock %}

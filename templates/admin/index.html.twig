@@ -41,10 +41,10 @@
     {% for article in articles %}
         <tbody>
             <tr>
-                    <td>{{article.id}}</td>
-                    <td>{{article.title}}</td>
-                    <td>{{article.category.name}}</td>
-                    <td><a class="modifier" href="{{path('admin_modif', {id: article.id})}}">Modifier</a><a class="supprimer" href="{{path('admin_delete', {id: article.id})}}">Supprimer</a></td>
+                <td>{{article.id}}</td>
+                <td>{{article.title}}</td>
+                <td>{{article.category.name}}</td>
+                <td><a class="modifier" href="{{path('admin_modif', {id: article.id})}}">Modifier</a><a class="supprimer" href="{{path('admin_delete', {id: article.id})}}">Supprimer</a></td>
             </tr>
         </tbody>
         {% endfor %}

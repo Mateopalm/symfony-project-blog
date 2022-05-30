@@ -5,7 +5,13 @@
 {% block body %}
 
     {% for article in articles %}
-        
+        <h2>{{article.title}}</h2>
+        <a href="{{path('ma_page_modif', {id: article.id})}}">Modifier</a>
+        <a href="{{path('ma_page_delete', {id: article.id})}}">Supprimer</a>
+        <p>{{article.description}}</p>
+        <img src="{{asset(article.image)}}" />
+		<p>{{article.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
+		<p>{{article.category.name}}</p>
     {% endfor %}
 
 {% endblock %}

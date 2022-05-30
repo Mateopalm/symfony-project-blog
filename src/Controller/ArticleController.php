@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Commentaire;
 use App\Form\CommentaireFormType;
+use App\Form\ModificationFormType;
 use App\Form\RecetteFormType;
 use App\Repository\ArticleRepository;
 use DateTime;
@@ -67,15 +68,54 @@ class ArticleController extends AbstractController
     }
 
     // Gestion de mes articles et commentaires
-    #[Route('/article', name: 'ma_page')]
+    #[Route('/mapage', name: 'ma_page')]
     public function mesArticles(ArticleRepository $repo): Response
     {
-        $article = $repo->findBy();
+        $articles = $repo->findBy(array('user' => $this->getUser()),array('creation_date' => 'DESC'));
 
         return $this->render('article/user.html.twig', [
-            'article' => $article,
+            'articles' => $articles,
         ]);
     }
+
+    // Suppression de mes articles / commentaires
+    #[Route('/mapage/{id}', name: 'ma_page_delete')]
+    public function mesArticleDelete(ArticleRepository $repo, EntityManagerInterface $entityManager, Article $article): Response
+    {
+        // Supprime l'article
+        $repo->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('ma_page');
+    }
+
+        // Modification article
+        #[Route('/ma_page_modif/{id}', name: 'ma_page_modif')]
+        public function mesArticlesModif($id, Request $request, ArticleRepository $repo, EntityManagerInterface $entityManager, Article $article): Response
+        {
+            $article = $repo->find($id);
+    
+            $form = $this->createForm(ModificationFormType::class, $article);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+    
+                // L'article garde le même user et la même date de création
+                $article->setUser($this->getUser());
+                $article->setCreationDate(new DateTime());
+                $entityManager->persist($article);
+                $entityManager->flush();
+    
+                return $this->redirectToRoute('ma_page');
+            }
+    
+            return $this->render('article/modification.html.twig', [
+                'article' => $article,
+                'modificationForm' => $form->createView(),
+            ]);
+        }
+
+
 
     #[Route('/create_article', name: 'create_recette')]
     public function createArticle(Request $request, EntityManagerInterface $entityManager): Response

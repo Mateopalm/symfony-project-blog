@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modif Admin{% endblock %}
+
+{% block body %}
+
+	<h1>Modification recette</h1>
+
+    {{ form_start(modificationForm) }}
+        {{ form_row(modificationForm.title, {value: article.title}) }}
+        {{ form_row(modificationForm.description, {value: article.description}) }}
+        {{ form_row(modificationForm.image, {value: article.image}) }}
+        {{ form_row(modificationForm.category) }}
+
+        <button type="submit" class="btn">Modifier la recette</button>
+    {{ form_end(modificationForm) }}
+
+{% endblock %}
