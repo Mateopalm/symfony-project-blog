@@ -3,12 +3,18 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-	<h1 id="articletitre">La liste des articles dispos</h1>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metrophobic\&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+	<h1 class="articletitre">Bienvenue sur Aventures Gustatives !</h1>
+	<p class="articletitre">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum optio numquam illum ad voluptas minima, harum ullam officiis, corrupti qui aspernatur dolores deserunt aperiam ducimus laboriosam, aut deleniti illo itaque.
+	Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis qui quibusdam perferendis itaque inventore et sed officia quis, accusantium iure est. Id corporis fugit dolorum, consequuntur possimus repellat asperiores sequi ab molestias. Expedita dolore doloremque, vel praesentium dolor adipisci nam deserunt obcaecati quaerat reprehenderit soluta, sit veniam, cumque in unde.</p>
 	<ul>
 		{% for article in articles %}
 			<li id="article">
 				<img src="{{asset(article.image)}}" />
 				<p id="date">{{article.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
+				<p id="user">{{article.user.username}}</p>
 				<p id="type">{{article.category.name}}</p>
 				<a id="titre" href="{{path('article_detail', {id: article.id})}}">{{article.title}}</a>
 				<p id="descrip">{{article.description}}</p>
@@ -16,9 +22,11 @@
 		{% endfor %}
 	</ul>
 <style>
-#articletitre{text-align: center;
-margin-top : 10%;
-margin-bottom : 10%}
+.articletitre{text-align: center;
+margin-top : 5%;
+margin-bottom : 10%;
+margin-left : 15%;
+margin-right : 15%}
 #article {
 	border : 1px solid #84947B;
 	height: 5%;
@@ -28,6 +36,7 @@ margin-bottom : 10%}
 	margin-left : 25%;
 	margin-right : 25%;
 	margin-bottom : 5%;
+	font-family: 'Metrophobic', sans-serif;
 }
 #article img {
 	width: 100%;
@@ -43,7 +52,7 @@ margin-bottom : 10%}
 	font-size: 170%;
 	color:black;
 }
-#article #date, #article #type {
+#article #date, #article #type, #article #user {
 	color : #84947B;
 }
 #article #descrip { font-size :100%;}

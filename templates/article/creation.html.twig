@@ -3,15 +3,53 @@
 {% block title %}Créer une recette{% endblock %}
 
 {% block body %}
-	<h1>Recette</h1>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+	<h1 id="titlecreate">Recette</h1>
+    
     {{ form_start(recetteForm) }}
-        {{ form_row(recetteForm.title) }}
-        {{ form_row(recetteForm.description) }}
-        {{ form_row(recetteForm.image) }}
-        {{ form_row(recetteForm.category) }}
+        <div id="createrecette">
+        <div id="title">{{ form_row(recetteForm.title) }}</div>
+        <div id="description">{{ form_row(recetteForm.description) }}</div>
+        <div id="image">{{ form_row(recetteForm.image) }}</div>
+        <div id="category">{{ form_row(recetteForm.category) }}</div>
+        
 
         <button type="submit" class="btn">Créer</button>
+        </div>
     {{ form_end(recetteForm) }}
+    
+<style>
+ #createrecette {
+     font-family : 'Metrophobic', sans-serif;
+    color : #84947B;
 
+    margin-left:25%;
+    margin-right : 25%;
+    display:contents;
+    text-align:center;
+    align-items: center;
+ }
+ #titlecreate{
+      font-family: 'Roboto Condensed', sans-serif;
+      display : flex;
+      flex-direction : column;
+      margin-left:25%;
+      margin-right : 25%;
+ }
+ #createrecette .btn {
+        width : 90%;
+        margin-left: 1em;
+        background : #84947B;
+        color : white;
+        border : 0px solid
+    }
+    form{
+        display: inline-flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;}
+
+</style>
 {% endblock %}

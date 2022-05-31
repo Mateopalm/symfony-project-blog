@@ -12,6 +12,16 @@
         <img src="{{asset(article.image)}}" />
 		<p>{{article.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
 		<p>{{article.category.name}}</p>
+
+	{% for commentaire in article.commentaire %}
+		<li>
+			<p>{{commentaire.message}}</p>
+			<p>{{commentaire.user.username}}</p>
+			<p>{{commentaire.getCreationDate|format_datetime('short', 'none', locale='fr')}}</p>
+            <a href="{{path('ma_page_delete_com', {id: commentaire.id})}}">Supprimer</a>
+		</li>
+	{% endfor %}
+
     {% endfor %}
 
 {% endblock %}

@@ -26,7 +26,7 @@ class ContactController extends AbstractController
             $entityManager->flush();
             // // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_contact');
         }
 
         return $this->render('contact/index.html.twig', [

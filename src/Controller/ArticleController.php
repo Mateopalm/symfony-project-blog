@@ -8,6 +8,7 @@ use App\Form\CommentaireFormType;
 use App\Form\ModificationFormType;
 use App\Form\RecetteFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentaireRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,12 +79,23 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    // Suppression de mes articles / commentaires
+    // Suppression de mes articles
     #[Route('/mapage/{id}', name: 'ma_page_delete')]
     public function mesArticleDelete(ArticleRepository $repo, EntityManagerInterface $entityManager, Article $article): Response
     {
         // Supprime l'article
         $repo->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('ma_page');
+    }
+
+    // Suppression des commentaires
+    #[Route('/mapagecom/{id}', name: 'ma_page_delete_com')]
+    public function mesArticleDeleteCommentaire(CommentaireRepository $repo, EntityManagerInterface $entityManager, Commentaire $commentaire): Response
+    {
+        // Supprime le commentaire
+        $repo->remove($commentaire);
         $entityManager->flush();
 
         return $this->redirectToRoute('ma_page');
