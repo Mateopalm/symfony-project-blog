@@ -3,60 +3,61 @@
 {% block title %}Hello !{% endblock %}
 
 {% block body %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 
-{% for article in articles %}
+	<style>
+		#recettetitre{text-align: center;
+		margin-top : 1%;
+		margin-bottom : 1%;
+		font-size: 170%;
+		display: contents;
+		color:black;}
+		#recette {
+			border : 1px solid #84947B;
+			height: 5%;
+			width: 50%;
+			display: flex;
+			flex-direction : column;
+			margin-left : 25%;
+			margin-right : 25%;
+			margin-bottom : 5%;
+			font-family: 'Metrophobic', sans-serif;
+		}
+		#recette img {
+			width: 100%;
+			height: 45em;
+			display:flex;
+		}
+		#description {
+			width : auto;
+			height : auto;
+		}
+		#recette #titre {
+			display : contents;
+			font-size: 170%;
+			color:black;
+		}
+		#recette #date, #recette #type, #recette #user {
+			color : #84947B;
+		}
+		#recette #description { font-size :100%;
+			font-family: 'Roboto Condensed', sans-serif;
+		}
+	</style>
 
-    <div id="recette">
-        <img src="{{asset(article.image)}}" />
-        <p id="date"> {{article.getCreationDate|format_datetime('short', 'none', locale='fr')}} </p>
-		<p id="user">{{article.user.username}}</p>
-        <p id="type">{{article.category.name}}</p>
-        <a id="recettetitre" href="{{path('article_detail', {id: article.id})}}">{{article.title}}</a>
-        <p id="description">{{article.description}}</p>
-    </div>
-    
-{% endfor %}
-<style>
-#recettetitre{text-align: center;
-margin-top : 1%;
-margin-bottom : 1%;
-font-size: 170%;
-display: contents;
-color:black;}
-#recette {
-	border : 1px solid #84947B;
-	height: 5%;
-	width: 50%;
-	display: flex;
-	flex-direction : column;
-	margin-left : 25%;
-	margin-right : 25%;
-	margin-bottom : 5%;
-    font-family: 'Metrophobic', sans-serif;
-}
-#recette img {
-	width: 100%;
-	height: 45em;
-	display:flex;
-}
-#description {
-	width : auto;
-	height : auto;
-}
-#recette #titre {
-	display : contents;
-	font-size: 170%;
-	color:black;
-}
-#recette #date, #recette #type, #recette #user {
-	color : #84947B;
-}
-#recette #description { font-size :100%;
-    font-family: 'Roboto Condensed', sans-serif;
-}
+	{% for article in articles %}
 
-</style>
+		<div id="recette">
+			<img src="{{asset(article.image)}}" />
+			<p id="date"> {{article.getCreationDate|format_datetime('short', 'none', locale='fr')}} </p>
+			<p id="user">{{article.user.username}}</p>
+			<p id="type">{{article.category.name}}</p>
+			<a id="recettetitre" href="{{path('article_detail', {id: article.id})}}">{{article.title}}</a>
+			<p id="description">{{article.description}}</p>
+		</div>
+		
+	{% endfor %}
+
 {% endblock %}

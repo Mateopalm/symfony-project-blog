@@ -72,8 +72,8 @@ class AppFixtures extends Fixture
                 $category
                 ->setName('Apéritif');
                 $image = 'images/aperitif-1.jpg';
-                $title = '9h et quart, l\'heure du pinard';
-                $description = 'Le titre des apéritifs est certifié \'beauf de France\'';
+                $title = 'apéro un jour apéro TOUJOURS';
+                $description = 'Apéritifs communs pour soirée';
             } else {
                 $category
                 ->setName('Pâtisserie');

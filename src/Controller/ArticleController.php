@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
+    // Page d'accueil
     #[Route('/', name: 'home')]
     public function Article(ArticleRepository $repo): Response
     {
@@ -28,6 +29,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    // Page détail de l'article
     #[Route('/article/{id}', name: 'article_detail')]
     public function articleDetail($id, Request $request, EntityManagerInterface $entityManager, ArticleRepository $repo): Response
     {
@@ -47,7 +49,6 @@ class ArticleController extends AbstractController
             $commentaire->setCreationDate(new DateTime());
             $entityManager->persist($commentaire);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirect($request->getUri());
         }
@@ -58,6 +59,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    // Page des recettes
     #[Route('/article', name: 'recettes')]
     public function articles(ArticleRepository $repo): Response
     {
@@ -101,34 +103,35 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('ma_page');
     }
 
-        // Modification article
-        #[Route('/ma_page_modif/{id}', name: 'ma_page_modif')]
-        public function mesArticlesModif($id, Request $request, ArticleRepository $repo, EntityManagerInterface $entityManager, Article $article): Response
-        {
-            $article = $repo->find($id);
-    
-            $form = $this->createForm(ModificationFormType::class, $article);
-            $form->handleRequest($request);
-    
-            if ($form->isSubmitted() && $form->isValid()) {
-    
-                // L'article garde le même user et la même date de création
-                $article->setUser($this->getUser());
-                $article->setCreationDate(new DateTime());
-                $entityManager->persist($article);
-                $entityManager->flush();
-    
-                return $this->redirectToRoute('ma_page');
-            }
-    
-            return $this->render('article/modification.html.twig', [
-                'article' => $article,
-                'modificationForm' => $form->createView(),
-            ]);
+    // Modification article
+    #[Route('/ma_page_modif/{id}', name: 'ma_page_modif')]
+    public function mesArticlesModif($id, Request $request, ArticleRepository $repo, EntityManagerInterface $entityManager, Article $article): Response
+    {
+        $article = $repo->find($id);
+
+        $form = $this->createForm(ModificationFormType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // L'article garde le même user et la même date de création
+            $article->setUser($this->getUser());
+            $article->setCreationDate(new DateTime());
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('ma_page');
         }
+    
+        return $this->render('article/modification.html.twig', [
+            'article' => $article,
+            'modificationForm' => $form->createView(),
+        ]);
+    }
 
 
 
+    // Page de création des articles
     #[Route('/create_article', name: 'create_recette')]
     public function createArticle(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -3,12 +3,54 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Metrophobic\&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Metrophobic\&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+	<style>
+		.articletitre{text-align: center;
+		margin-top : 5%;
+		margin-bottom : 5%;
+		margin-left : 15%;
+		margin-right : 15%;
+		font-family: 'Metrophobic', sans-serif;}
+		#article {
+			border : 1px solid #84947B;
+			height: 5%;
+			width: 50%;
+			display: flex;
+			flex-direction : column;
+			margin-left : 25%;
+			margin-right : 25%;
+			margin-bottom : 5%;
+			font-family: 'Metrophobic', sans-serif;
+		}
+		#article img {
+			width: 100%;
+			height: 45em;
+			display:flex;
+		}
+		#description {
+			width : auto;
+			height : auto;
+		}
+		#article #titre {
+			display : contents;
+			font-size: 170%;
+			color:black;
+		}
+		#article #date, #article #type, #article #user {
+			color : #84947B;
+		}
+		#article #descrip { font-size :100%;}
+	</style>
+	
+	
 	<h1 class="articletitre">Bienvenue sur Aventures Gustatives !</h1>
+
 	<p class="articletitre">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum optio numquam illum ad voluptas minima, harum ullam officiis, corrupti qui aspernatur dolores deserunt aperiam ducimus laboriosam, aut deleniti illo itaque.
 	Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis qui quibusdam perferendis itaque inventore et sed officia quis, accusantium iure est. Id corporis fugit dolorum, consequuntur possimus repellat asperiores sequi ab molestias. Expedita dolore doloremque, vel praesentium dolor adipisci nam deserunt obcaecati quaerat reprehenderit soluta, sit veniam, cumque in unde.</p>
+	
 	<ul>
 		{% for article in articles %}
 			<li id="article">
@@ -21,41 +63,4 @@
 			</li>
 		{% endfor %}
 	</ul>
-<style>
-.articletitre{text-align: center;
-margin-top : 5%;
-margin-bottom : 10%;
-margin-left : 15%;
-margin-right : 15%}
-#article {
-	border : 1px solid #84947B;
-	height: 5%;
-	width: 50%;
-	display: flex;
-	flex-direction : column;
-	margin-left : 25%;
-	margin-right : 25%;
-	margin-bottom : 5%;
-	font-family: 'Metrophobic', sans-serif;
-}
-#article img {
-	width: 100%;
-	height: 45em;
-	display:flex;
-}
-#description {
-	width : auto;
-	height : auto;
-}
-#article #titre {
-	display : contents;
-	font-size: 170%;
-	color:black;
-}
-#article #date, #article #type, #article #user {
-	color : #84947B;
-}
-#article #descrip { font-size :100%;}
-
-</style>
 {% endblock %}
